@@ -334,7 +334,8 @@ class URLRedirector
         $redirect_url = get_option('sikada_auth_logout_redirect');
 
         if (!$redirect_url) {
-            $redirect_url = $this->get_login_page_url();
+            $custom_login = $this->get_login_page_url();
+            $redirect_url = $custom_login ? $custom_login : wp_login_url();
         }
 
         return $redirect_url;

@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.2] - 2026-01-25
+
+### Fixed
+- Fixed logout redirection issue causing white screen when using default settings.
+- Fixed character encoding syntax error in package script.
+
 ## [1.0.1] - 2026-01-25
 
 ### Added

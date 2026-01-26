@@ -12,20 +12,20 @@
 #>
 
 $PluginName = "sikada-auth"
-$Version = "1.0.0" # You could parse this from plugin.php if desired
+$Version = "1.0.2" # You could parse this from plugin.php if desired
 $ZipName = "$PluginName-$Version.zip"
 $BuildDir = "build_tmp\$PluginName"
 
-Write-Host "📦 Starting Package Process for $PluginName..." -ForegroundColor Cyan
+Write-Host "[*] Starting Package Process for $PluginName..." -ForegroundColor Cyan
 
 # 1. Build Assets
-Write-Host "🏗️  Building Frontend Assets..." -ForegroundColor Yellow
+Write-Host "[+] Building Frontend Assets..." -ForegroundColor Yellow
 npm install
 npm run build
 if ($LASTEXITCODE -ne 0) { Write-Error "Build failed"; exit 1 }
 
 # 2. Install Production Composer Dependencies
-Write-Host "🎼 Installing Production Composer Dependencies..." -ForegroundColor Yellow
+Write-Host "[+] Installing Production Composer Dependencies..." -ForegroundColor Yellow
 composer install --no-dev --optimize-autoloader
 if ($LASTEXITCODE -ne 0) { Write-Error "Composer failed"; exit 1 }
 
@@ -34,7 +34,7 @@ if (Test-Path "build_tmp") { Remove-Item "build_tmp" -Recurse -Force }
 New-Item -ItemType Directory -Path $BuildDir | Out-Null
 
 # 4. Copy Files
-Write-Host "CX  Copying files..." -ForegroundColor Yellow
+Write-Host "[+] Copying files..." -ForegroundColor Yellow
 $Exclude = @(
     ".git", ".github", ".vscode", ".gitignore", "node_modules", 
     "tests", "scripts", "build_tmp", "*.zip", "Thumbs.db", ".DS_Store",
@@ -64,16 +64,16 @@ foreach ($Item in $IncludeItems) {
 }
 
 # 5. Zip it up
-Write-Host "🤐 Zipping..." -ForegroundColor Yellow
+Write-Host "[+] Zipping..." -ForegroundColor Yellow
 if (Test-Path $ZipName) { Remove-Item $ZipName }
 Compress-Archive -Path "build_tmp\$PluginName" -DestinationPath $ZipName
 
 # 6. Cleanup
-Write-Host "🧹 Cleanup..." -ForegroundColor Yellow
+Write-Host "[+] Cleanup..." -ForegroundColor Yellow
 Remove-Item "build_tmp" -Recurse -Force
 
 # 7. Restore Dev Dependencies (Optional)
-Write-Host "🔄 Restoring Dev Dependencies..." -ForegroundColor Yellow
+Write-Host "[+] Restoring Dev Dependencies..." -ForegroundColor Yellow
 composer install
 
-Write-Host "✅ Done! Package created: $ZipName" -ForegroundColor Green
+Write-Host "[OK] Done! Package created: $ZipName" -ForegroundColor Green
