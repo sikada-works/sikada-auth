@@ -94,6 +94,11 @@ class Plugin
 			(new \SikadaWorks\SikadaAuth\Redirect\URLRedirector())->init();
 		}
 
+		// Register Global Protection
+		if (class_exists('SikadaWorks\\SikadaAuth\\Redirect\\GlobalProtection')) {
+			(new \SikadaWorks\SikadaAuth\Redirect\GlobalProtection())->init();
+		}
+
 		// Register admin pages
 		if (class_exists('SikadaWorks\\SikadaAuth\\Admin\\SettingsPage')) {
 			(new \SikadaWorks\SikadaAuth\Admin\SettingsPage())->init();

@@ -76,7 +76,13 @@ class SettingsPage
         register_setting('sikada_auth_security', 'sikada_auth_require_uppercase');
         register_setting('sikada_auth_security', 'sikada_auth_require_lowercase');
         register_setting('sikada_auth_security', 'sikada_auth_require_number');
+        register_setting('sikada_auth_security', 'sikada_auth_require_number');
         register_setting('sikada_auth_security', 'sikada_auth_require_special');
+
+        // Global Protection Settings
+        register_setting('sikada_auth_security', 'sikada_auth_global_protection_enable');
+        register_setting('sikada_auth_security', 'sikada_auth_global_protection_block_api');
+        register_setting('sikada_auth_security', 'sikada_auth_global_protection_block_admin');
 
         // Email settings
         register_setting('sikada_auth_email', 'sikada_auth_email_from_name');
@@ -429,6 +435,41 @@ class SettingsPage
                 </td>
             </tr>
         </table>
+
+        <h2>
+            <?php _e('Global Site Protection', 'sikada-auth'); ?>
+        </h2>
+        <table class="form-table" role="presentation">
+            <tr>
+                <th scope="row">
+                    <?php _e('Enable Site Protection', 'sikada-auth'); ?>
+                </th>
+                <td>
+                    <label>
+                        <input type="checkbox" name="sikada_auth_global_protection_enable" value="1" <?php checked(get_option('sikada_auth_global_protection_enable')); ?> />
+                        <?php _e('Force all logged-out visitors to the Login Page.', 'sikada-auth'); ?>
+                    </label>
+                    <p class="description">
+                        <?php _e('Redirects all frontend traffic to your configured Login Page. Useful for intranets or membership sites.', 'sikada-auth'); ?>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <?php _e('Strict Mode', 'sikada-auth'); ?>
+                </th>
+                <td>
+                    <label>
+                        <input type="checkbox" name="sikada_auth_global_protection_block_api" value="1" <?php checked(get_option('sikada_auth_global_protection_block_api')); ?> />
+                        <?php _e('Block REST API access for non-authenticated users.', 'sikada-auth'); ?>
+                    </label><br>
+                    <label>
+                        <input type="checkbox" name="sikada_auth_global_protection_block_admin" value="1" <?php checked(get_option('sikada_auth_global_protection_block_admin')); ?> />
+                        <?php _e('Block wp-admin access (Frontend redirect usually handles this, but this adds strict enforcement).', 'sikada-auth'); ?>
+                    </label>
+                </td>
+            </tr>
+        </table>
         <?php submit_button(); ?>
     <?php
     }
@@ -530,7 +571,8 @@ class SettingsPage
                     <input type="color" name="sikada_auth_primary_color" id="sikada_auth_primary_color"
                         value="<?php echo esc_attr(get_option('sikada_auth_primary_color', '#2271b1')); ?>" />
                     <p class="description">
-                        <?php _e('Controls the button background, link color, and focus rings.', 'sikada-auth'); ?></p>
+                        <?php _e('Controls the button background, link color, and focus rings.', 'sikada-auth'); ?>
+                    </p>
                 </td>
             </tr>
         </table>
