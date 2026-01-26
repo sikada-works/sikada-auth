@@ -1,0 +1,145 @@
+/* Shared styles for Sikada Auth blocks */
+:root {
+    /* Colors */
+    --sikada-primary-color: #2271b1;
+    /* Overridden by inline style in render.php */
+    --sikada-border-color: #ccc;
+    --sikada-bg-color: #f6f7f7;
+    --sikada-error-color: #d63638;
+    --sikada-success-color: #008a20;
+    --sikada-text-color: #333;
+
+    /* Spacing */
+    --sikada-spacing-sm: 8px;
+    --sikada-spacing-md: 15px;
+    --sikada-spacing-lg: 20px;
+
+    /* Typography */
+    --sikada-font-family: inherit;
+    --sikada-font-size-base: 0.95em;
+    --sikada-font-size-sm: 0.85em;
+    --sikada-font-size-xs: 0.75em;
+}
+
+/* Base Wrapper for all blocks */
+.sikada-auth-wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: var(--sikada-spacing-lg);
+    font-family: var(--sikada-font-family);
+    color: var(--sikada-text-color);
+}
+
+/* Form Fields */
+.sikada-form-field {
+    margin-bottom: var(--sikada-spacing-md);
+}
+
+.sikada-form-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: var(--sikada-font-size-base);
+}
+
+.sikada-form-field input[type="text"],
+.sikada-form-field input[type="email"],
+.sikada-form-field input[type="password"] {
+    width: 100%;
+    padding: var(--sikada-spacing-sm) 12px;
+    border: 1px solid var(--sikada-border-color);
+    border-radius: 4px;
+    height: 46px;
+    font-size: var(--sikada-font-size-base);
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.sikada-form-field input:focus {
+    border-color: var(--sikada-primary-color);
+    box-shadow: 0 0 0 1px var(--sikada-primary-color);
+    outline: 2px solid transparent;
+}
+
+/* Buttons */
+.sikada-form-actions {
+    margin-top: var(--sikada-spacing-lg);
+}
+
+.sikada-button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--sikada-primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--sikada-font-size-base);
+    font-weight: 500;
+    text-align: center;
+    transition: opacity 0.2s;
+}
+
+.sikada-button:hover {
+    opacity: 0.9;
+}
+
+.sikada-button:disabled {
+    background-color: #a7aaad;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+/* Links */
+.sikada-form-links {
+    margin-top: var(--sikada-spacing-md);
+    text-align: center;
+    font-size: var(--sikada-font-size-xs);
+}
+
+.sikada-form-links a {
+    color: var(--sikada-primary-color);
+    text-decoration: none;
+}
+
+.sikada-form-links a:hover {
+    text-decoration: underline;
+}
+
+/* Messages */
+.sikada-message {
+    padding: 10px;
+    margin-bottom: var(--sikada-spacing-md);
+    font-size: var(--sikada-font-size-sm);
+    border-left: 4px solid var(--sikada-primary-color);
+    background-color: var(--sikada-bg-color);
+}
+
+.sikada-message-error {
+    border-color: var(--sikada-error-color);
+}
+
+.sikada-message-success {
+    border-color: var(--sikada-success-color);
+}
+
+/* Checkboxes */
+.sikada-checkbox {
+    margin-top: 10px;
+}
+
+.sikada-checkbox label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: var(--sikada-spacing-sm);
+    cursor: pointer;
+}
+
+.sikada-checkbox input[type="checkbox"] {
+    accent-color: var(--sikada-primary-color);
+    width: auto;
+    height: auto;
+    margin: 0;
+    cursor: pointer;
+}

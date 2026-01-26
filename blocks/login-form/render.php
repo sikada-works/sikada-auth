@@ -15,7 +15,7 @@ $primary_color = get_option('sikada_auth_primary_color', '#2271b1');
 
 // Wrapper attributes
 $wrapper_attributes = get_block_wrapper_attributes([
-    'class' => 'sikada-auth-login-form',
+    'class' => 'sikada-auth-login-form sikada-auth-wrapper',
     'style' => "--sikada-primary-color: {$primary_color};"
 ]);
 ?>

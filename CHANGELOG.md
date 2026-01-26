@@ -2,7 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.0] - YYYY-MM-DD
+## [1.0.1] - 2026-01-25
+
+### Added
+- Dynamic "Primary Color" customization setting.
+- Shared CSS system for consistent styling across blocks.
+- `accent-color` support for checkboxes.
+
+### Fixed
+- Fixed URL redirector stripping query parameters (reset key).
+- Fixed missing button hover styles on reset form.
+- Fixed legacy admin page registration.
+
+## [1.0.0] - 2026-01-25 
 
 ### Added
 - Initial release

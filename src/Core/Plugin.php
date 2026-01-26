@@ -131,7 +131,19 @@ class Plugin
 	 */
 	public function enqueue_frontend_scripts()
 	{
-		if (has_block('sikada-auth/login-form')) {
+		$has_login = has_block('sikada-auth/login-form');
+		$has_reset = has_block('sikada-auth/password-reset');
+
+		if ($has_login || $has_reset) {
+			wp_enqueue_style(
+				'sikada-auth-shared-styles',
+				SIKADA_AUTH_PLUGIN_URL . 'assets/css/shared-styles.css',
+				[],
+				SIKADA_AUTH_VERSION
+			);
+		}
+
+		if ($has_login) {
 			wp_enqueue_script(
 				'sikada-auth-login-form',
 				SIKADA_AUTH_PLUGIN_URL . 'assets/js/login-form.js',
