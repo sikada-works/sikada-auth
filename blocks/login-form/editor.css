@@ -1,0 +1,14 @@
+.wp-block-sikada-auth-login-form {
+    padding: 20px;
+    border: 1px dashed #ccc;
+    background: #f9f9f9;
+}
+
+.sikada-auth-login-form-placeholder {
+    text-align: center;
+}
+
+.sikada-auth-login-form-placeholder p {
+    font-style: italic;
+    color: #666;
+}

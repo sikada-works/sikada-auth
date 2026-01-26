@@ -1,0 +1,18 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "sikada-auth/login-form",
+    "title": "Login Form",
+    "category": "widgets",
+    "icon": "lock",
+    "description": "Custom login form with AJAX authentication.",
+    "supports": {
+        "html": false,
+        "align": true
+    },
+    "textdomain": "sikada-auth",
+    "editorScript": "file:../../build/blocks/login-form.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php"
+}

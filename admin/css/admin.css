@@ -1,0 +1,40 @@
+/**
+ * Admin Styles
+ *
+ * @package SikadaWorks\SikadaAuth
+ * @since 1.0.0
+ */
+
+.sikada-auth-admin {
+	margin-top: 20px;
+}
+
+.sikada-auth-admin h2 {
+	margin-top: 30px;
+	margin-bottom: 15px;
+}
+
+.sikada-auth-content {
+	background: #fff;
+	padding: 20px;
+	border: 1px solid #ccd0d4;
+	border-radius: 4px;
+	margin-top: 20px;
+}
+
+.sikada-auth-content ul {
+	list-style: disc;
+	margin-left: 20px;
+	margin-bottom: 15px;
+}
+
+.sikada-auth-content ol {
+	list-style: decimal;
+	margin-left: 20px;
+	margin-bottom: 15px;
+}
+
+.sikada-auth-content li {
+	margin-bottom: 8px;
+	line-height: 1.6;
+}

@@ -1,0 +1,9 @@
+.wp-block-sikada-auth-password-reset {
+    background: #f9f9f9;
+    padding: 20px;
+    border: 1px dashed #ccc;
+}
+
+.sikada-auth-reset-placeholder {
+    text-align: center;
+}

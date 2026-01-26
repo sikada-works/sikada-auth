@@ -1,0 +1,19 @@
+{
+	"name": "sikadaworks/sikada-auth",
+	"description": "Sikada Authorization",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": ">=7.4"
+	},
+	"autoload": {
+		"psr-4": {
+			"SikadaWorks\\SikadaAuth\\": "src/"
+		}
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"@php -r \"if (!file_exists('vendor/autoload.php')) { echo 'Autoloader not found. Please run composer install.'; exit(1); }\""
+		]
+	}
+}
