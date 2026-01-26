@@ -1,0 +1,8 @@
+Security Alert: Suspicious Activity
+
+Multiple failed login attempts were detected from the following IP:
+IP Address: <?php echo $ip_address; ?>
+User Agent: <?php echo $user_agent; ?>
+Timestamp: <?php echo current_time('mysql'); ?>
+
+This IP has been temporarily blocked.

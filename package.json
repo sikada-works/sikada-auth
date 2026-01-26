@@ -4,10 +4,11 @@
     "description": "Sikada Authorization",
     "main": "index.js",
     "scripts": {
-        "dev": "webpack --mode development --watch",
-        "build": "webpack --mode production",
-        "lint:js": "eslint blocks/**/*.js",
-        "format": "prettier --write 'blocks/**/*.{js,jsx}'"
+        "build": "wp-scripts build",
+        "start": "wp-scripts start",
+        "format": "wp-scripts format",
+        "lint:js": "wp-scripts lint-js",
+        "packages-update": "wp-scripts packages-update"
     },
     "keywords": [
         "wordpress",

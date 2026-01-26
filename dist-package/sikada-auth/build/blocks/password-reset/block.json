@@ -1,0 +1,18 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "sikada-auth/password-reset",
+    "title": "Password Reset",
+    "category": "widgets",
+    "icon": "lock",
+    "description": "A unified password reset flow (Request & Reset).",
+    "supports": {
+        "html": false,
+        "align": true
+    },
+    "textdomain": "sikada-auth",
+    "editorScript": "file:../../build/blocks/password-reset.js",
+    "editorStyle": "file:./editor.css",
+    "style": "file:./style.css",
+    "render": "file:./render.php"
+}
