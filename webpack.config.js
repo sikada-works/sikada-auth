@@ -59,6 +59,11 @@ module.exports = {
                     },
                     noErrorOnMissing: true,
                 },
+                {
+                    from: 'frontend/assets',
+                    to: 'assets',
+                    noErrorOnMissing: true,
+                },
             ],
         }),
     ],

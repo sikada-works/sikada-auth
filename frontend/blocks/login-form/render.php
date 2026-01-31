@@ -32,7 +32,7 @@ $wrapper_attributes = get_block_wrapper_attributes([
             </a>
         </div>
     <?php else: ?>
-        <form class="sikada-login-form" data-sikada-login-form>
+        <form class="sikada-login-form" data-sikada-login-form method="POST">
             <div class="sikada-form-messages"></div>
 
             <div class="sikada-form-field">

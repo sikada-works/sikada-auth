@@ -114,7 +114,7 @@ class Plugin
 		// Register blocks
 		add_action('init', [$this, 'register_blocks']);
 
-		// Enqueue frontend scripts
+		// Enqueue frontend scripts (Shared Styles)
 		add_action('wp_enqueue_scripts', [$this, 'enqueue_frontend_scripts']);
 	}
 
@@ -125,8 +125,8 @@ class Plugin
 	 */
 	public function register_blocks()
 	{
-		register_block_type(SIKADA_AUTH_PLUGIN_DIR . 'blocks/login-form');
-		register_block_type(SIKADA_AUTH_PLUGIN_DIR . 'blocks/password-reset');
+		register_block_type(SIKADA_AUTH_PLUGIN_DIR . 'build/blocks/login-form');
+		register_block_type(SIKADA_AUTH_PLUGIN_DIR . 'build/blocks/password-reset');
 	}
 
 	/**
@@ -142,7 +142,7 @@ class Plugin
 		if ($has_login || $has_reset) {
 			wp_enqueue_style(
 				'sikada-auth-shared-styles',
-				SIKADA_AUTH_PLUGIN_URL . 'assets/css/shared-styles.css',
+				SIKADA_AUTH_PLUGIN_URL . 'build/assets/css/shared-styles.css',
 				[],
 				SIKADA_AUTH_VERSION
 			);
@@ -151,7 +151,7 @@ class Plugin
 		if ($has_login) {
 			wp_enqueue_script(
 				'sikada-auth-login-form',
-				SIKADA_AUTH_PLUGIN_URL . 'assets/js/login-form.js',
+				SIKADA_AUTH_PLUGIN_URL . 'build/assets/js/login-form.js',
 				[],
 				SIKADA_AUTH_VERSION,
 				true
@@ -175,7 +175,7 @@ class Plugin
 		if (has_block('sikada-auth/password-reset')) {
 			wp_enqueue_script(
 				'sikada-auth-password-reset',
-				SIKADA_AUTH_PLUGIN_URL . 'assets/js/password-reset.js',
+				SIKADA_AUTH_PLUGIN_URL . 'build/assets/js/password-reset.js',
 				[],
 				SIKADA_AUTH_VERSION,
 				true
@@ -194,6 +194,8 @@ class Plugin
 			]);
 		}
 	}
+
+
 
 	/**
 	 * Get login page URL
