@@ -57,6 +57,9 @@ class Plugin
 
 		// Fire loaded hook
 		do_action('sikada_auth_loaded');
+		
+		// Allow extensions to hook after services are registered
+		do_action('sikada_auth_services_registered');
 	}
 
 	/**
@@ -111,11 +114,36 @@ class Plugin
 			(new \SikadaWorks\SikadaAuth\Tests\TestRunner())->init();
 		}
 
+		// Register block category
+		add_filter('block_categories_all', [$this, 'register_block_category'], 10, 2);
+		
 		// Register blocks
 		add_action('init', [$this, 'register_blocks']);
 
 		// Enqueue frontend scripts (Shared Styles)
 		add_action('wp_enqueue_scripts', [$this, 'enqueue_frontend_scripts']);
+	}
+
+	/**
+	 * Register custom block category
+	 *
+	 * @since 1.0.0
+	 * @param array $categories Existing block categories
+	 * @param WP_Block_Editor_Context $context Block editor context
+	 * @return array Modified categories
+	 */
+	public function register_block_category($categories, $context)
+	{
+		return array_merge(
+			[
+				[
+					'slug' => 'sikada-auth',
+					'title' => __('Sikada Auth', 'sikada-auth'),
+					'icon' => null,
+				],
+			],
+			$categories
+		);
 	}
 
 	/**
@@ -125,8 +153,15 @@ class Plugin
 	 */
 	public function register_blocks()
 	{
-		register_block_type(SIKADA_AUTH_PLUGIN_DIR . 'build/blocks/login-form');
-		register_block_type(SIKADA_AUTH_PLUGIN_DIR . 'build/blocks/password-reset');
+		// Register login form block
+		if (file_exists(SIKADA_AUTH_PLUGIN_DIR . 'build/blocks/login-form')) {
+			register_block_type(SIKADA_AUTH_PLUGIN_DIR . 'build/blocks/login-form');
+		}
+		
+		// Register password reset block
+		if (file_exists(SIKADA_AUTH_PLUGIN_DIR . 'build/blocks/password-reset')) {
+			register_block_type(SIKADA_AUTH_PLUGIN_DIR . 'build/blocks/password-reset');
+		}
 	}
 
 	/**

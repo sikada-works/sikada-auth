@@ -71,6 +71,8 @@ class PasswordResetHandler
             'user_login' => $user->user_login,
             'user_email' => $user->user_email,
             'user_display_name' => $user->display_name,
+            'username' => $user->display_name,
+            'reset_url' => $reset_url,
             'reset_link' => $reset_url,
             'reset_key' => $key,
             'expiration_time' => '24 hours'

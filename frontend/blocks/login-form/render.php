@@ -32,6 +32,8 @@ $wrapper_attributes = get_block_wrapper_attributes([
             </a>
         </div>
     <?php else: ?>
+        <?php do_action('sikada_auth_before_login_form'); ?>
+
         <form class="sikada-login-form" data-sikada-login-form method="POST">
             <div class="sikada-form-messages"></div>
 
@@ -70,5 +72,8 @@ $wrapper_attributes = get_block_wrapper_attributes([
 
             <?php wp_nonce_field('sikada_auth_login', 'sikada_auth_nonce'); ?>
         </form>
+
+        <?php do_action('sikada_auth_after_login_form'); ?>
+
     <?php endif; ?>
 </div>

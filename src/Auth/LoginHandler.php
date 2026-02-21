@@ -96,6 +96,9 @@ class LoginHandler
         // Clear rate limit attempts on successful login
         $rate_limiter = new RateLimiter();
         $rate_limiter->clear_attempts($user_login, $this->get_user_ip());
+        
+        // Allow extensions to hook after successful login
+        do_action('sikada_auth_after_login', $user, 'standard');
     }
 
     /**

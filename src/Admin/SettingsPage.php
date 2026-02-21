@@ -129,6 +129,19 @@ class SettingsPage
         // Get active tab
         $active_tab = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'general';
 
+        // Define tabs
+        $tabs = [
+            'general' => __('General', 'sikada-auth'),
+            'redirects' => __('Redirects', 'sikada-auth'),
+            'security' => __('Security', 'sikada-auth'),
+            'email' => __('Email', 'sikada-auth'),
+            'logs' => __('Logs', 'sikada-auth'),
+            'localization' => __('Customization', 'sikada-auth'),
+        ];
+
+        // Allow extensions to add settings tabs
+        $tabs = apply_filters('sikada_auth_settings_tabs', $tabs);
+
         ?>
         <div class="wrap">
             <h1>
@@ -136,30 +149,12 @@ class SettingsPage
             </h1>
 
             <h2 class="nav-tab-wrapper">
-                <a href="?page=<?php echo $this->page_slug; ?>&tab=general"
-                    class="nav-tab <?php echo $active_tab === 'general' ? 'nav-tab-active' : ''; ?>">
-                    <?php _e('General', 'sikada-auth'); ?>
+                <?php foreach ($tabs as $tab_key => $tab_label): ?>
+                <a href="?page=<?php echo $this->page_slug; ?>&tab=<?php echo esc_attr($tab_key); ?>"
+                    class="nav-tab <?php echo $active_tab === $tab_key ? 'nav-tab-active' : ''; ?>">
+                    <?php echo esc_html($tab_label); ?>
                 </a>
-                <a href="?page=<?php echo $this->page_slug; ?>&tab=redirects"
-                    class="nav-tab <?php echo $active_tab === 'redirects' ? 'nav-tab-active' : ''; ?>">
-                    <?php _e('Redirects', 'sikada-auth'); ?>
-                </a>
-                <a href="?page=<?php echo $this->page_slug; ?>&tab=security"
-                    class="nav-tab <?php echo $active_tab === 'security' ? 'nav-tab-active' : ''; ?>">
-                    <?php _e('Security', 'sikada-auth'); ?>
-                </a>
-                <a href="?page=<?php echo $this->page_slug; ?>&tab=email"
-                    class="nav-tab <?php echo $active_tab === 'email' ? 'nav-tab-active' : ''; ?>">
-                    <?php _e('Email', 'sikada-auth'); ?>
-                </a>
-                <a href="?page=<?php echo $this->page_slug; ?>&tab=logs"
-                    class="nav-tab <?php echo $active_tab === 'logs' ? 'nav-tab-active' : ''; ?>">
-                    <?php _e('Logs', 'sikada-auth'); ?>
-                </a>
-                <a href="?page=<?php echo $this->page_slug; ?>&tab=localization"
-                    class="nav-tab <?php echo $active_tab === 'localization' ? 'nav-tab-active' : ''; ?>">
-                    <?php _e('Customization', 'sikada-auth'); ?>
-                </a>
+                <?php endforeach; ?>
             </h2>
 
             <form method="post" action="options.php">
@@ -182,6 +177,10 @@ class SettingsPage
                         break;
                     case 'localization':
                         $this->render_localization_tab();
+                        break;
+                    default:
+                        // Allow extensions to render their tab content
+                        do_action("sikada_auth_settings_tab_{$active_tab}");
                         break;
                 }
                 ?>
