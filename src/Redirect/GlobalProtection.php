@@ -133,35 +133,48 @@ class GlobalProtection
         exit;
     }
 
-    /**
-     * Check if current page is in the allowlist
-     *
-     * @since 1.0.3
-     * @return bool
-     */
-    private function is_allowed_page()
-    {
-        global $post;
+	/**
+	 * Check if current page is in the allowlist
+	 *
+	 * @since 1.0.3
+	 * @return bool
+	 */
+	private function is_allowed_page()
+	{
+		global $post;
 
-        if (!is_object($post)) {
-            return false;
-        }
+		if (!is_object($post)) {
+			return false;
+		}
 
-        $login_page_id = (int) get_option('sikada_auth_login_page');
-        $reset_page_id = (int) get_option('sikada_auth_password_reset_page');
+		$login_page_id = (int) get_option('sikada_auth_login_page');
+		$reset_page_id = (int) get_option('sikada_auth_password_reset_page');
+		$registration_page_id = (int) get_option('sikada_passwordless_registration_page');
+		$thank_you_page_id = (int) get_option('sikada_passwordless_registration_submitted_redirect');
 
-        // Allow Login Page
-        if ($login_page_id && is_page($login_page_id)) {
-            return true;
-        }
+		// Allow Login Page
+		if ($login_page_id && is_page($login_page_id)) {
+			return true;
+		}
 
-        // Allow Password Reset Page
-        if ($reset_page_id && is_page($reset_page_id)) {
-            return true;
-        }
-
-        return false;
-    }
+		// Allow Password Reset Page
+		if ($reset_page_id && is_page($reset_page_id)) {
+			return true;
+		}
+		
+		// Allow Registration Request Page (from Passwordless Login plugin)
+		if ($registration_page_id && is_page($registration_page_id)) {
+			return true;
+		}
+		
+		// Allow Thank You Page (from Passwordless Login plugin)
+		if ($thank_you_page_id && is_page($thank_you_page_id)) {
+			return true;
+		}
+		
+		// Allow filtering for extensions to add their own pages
+		return apply_filters('sikada_auth_global_protection_is_allowed_page', false, $post);
+	}
 
     /**
      * Get target login URL

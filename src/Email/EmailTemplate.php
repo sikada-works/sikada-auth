@@ -25,12 +25,15 @@ class EmailTemplate
         $extension = ($format === 'html') ? 'php' : 'txt';
         $filename = "{$template_name}.{$extension}";
 
-        // Template hierarchy (child theme → parent theme → plugin)
+        // Template hierarchy (child theme → parent theme → plugin → extensions)
         $locations = [
             get_stylesheet_directory() . '/sikada-auth/emails/' . $filename,
             get_template_directory() . '/sikada-auth/emails/' . $filename,
             SIKADA_AUTH_PLUGIN_DIR . 'templates/emails/' . $filename,
         ];
+        
+        // Allow extensions to add their own template locations
+        $locations = apply_filters('sikada_auth_email_template_locations', $locations, $template_name, $format);
 
         foreach ($locations as $location) {
             if (file_exists($location)) {
